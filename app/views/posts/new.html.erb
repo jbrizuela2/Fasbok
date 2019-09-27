@@ -1,0 +1,17 @@
+<h1> Nuevo Post :D </h1>
+
+<% if @post.errors.any? %>
+  <p> <%= @post.errors.count %> errores no han permitido guardar el registro </p>
+<% end %>
+
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <br/>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+  <br/>
+  <%= f.submit %>
+<% end %>

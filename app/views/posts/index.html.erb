@@ -3,3 +3,5 @@
 <% @posts.each do |post| %>
   <h2> <%= link_to(post.title, post_path(post)) %> </h2>
 <% end %>
+
+<%= link_to "Nuevo post", new_post_path %>
