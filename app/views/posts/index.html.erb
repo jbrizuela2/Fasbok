@@ -1,0 +1,5 @@
+<h1> Todos los posts de la banda </h1>
+
+<% @posts.each do |post| %>
+  <h2> <%= link_to(post.title, post_path(post)) %> </h2>
+<% end %>
