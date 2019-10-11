@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :assign_post, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_user_signed, only: [:new, :create, :edit, :update, :destroy]
 
   # Listar todos los elementos
   def index
@@ -50,10 +51,16 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content).merge(user: current_user)
   end
 
   def assign_post
     @post = Post.find(params[:id])
+  end
+
+  def ensure_user_signed
+    return if user_signed_in?
+
+    redirect_to posts_path
   end
 end
