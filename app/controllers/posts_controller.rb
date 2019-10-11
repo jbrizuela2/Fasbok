@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :assign_post, only: [:show, :edit, :update, :destroy]
   before_action :ensure_user_signed, only: [:new, :create, :edit, :update, :destroy]
+  before_action :user_has_permission, only: [:edit, :update, :destroy]
 
   # Listar todos los elementos
   def index
@@ -60,6 +61,12 @@ class PostsController < ApplicationController
 
   def ensure_user_signed
     return if user_signed_in?
+
+    redirect_to posts_path
+  end
+
+  def user_has_permission
+    return if @post.user == current_user
 
     redirect_to posts_path
   end

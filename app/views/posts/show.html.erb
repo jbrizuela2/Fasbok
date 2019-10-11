@@ -4,7 +4,7 @@
 <p> <%= @post.content %> </p>
 
 <%# Safe navigation operator %>
-<b> Autor: <%= @post.user ? @post.user.email : "Anonimo" %> </b> <br/>
+<%# <b> Autor: <%= @post.user ? @post.user.email : "Anonimo" </b> <br/> %>
 <b> Autor: <%= @post.user&.email || "Anonimo" %> </b> <br/>
 
 <%= link_to("Editar este post", edit_post_path(@post)) %>
