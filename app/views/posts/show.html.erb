@@ -2,3 +2,7 @@
 <b> <%= @post.likes %> likes </b>
 
 <p> <%= @post.content %> </p>
+
+<%= link_to("Editar este post", edit_post_path(@post)) %>
+
+<%= link_to "Eliminar", post_path(@post),  method: "delete" %>
