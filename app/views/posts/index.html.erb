@@ -4,4 +4,6 @@
   <h2> <%= link_to(post.title, post_path(post)) %> </h2>
 <% end %>
 
-<%= link_to "Nuevo post", new_post_path %>
+<% if user_signed_in? %>
+  <%= link_to "Nuevo post", new_post_path %>
+<% end %>
