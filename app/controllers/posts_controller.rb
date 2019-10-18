@@ -21,8 +21,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      flash[:notice] = "Se ha creado el post correctamente"
       redirect_to post_path(@post)
     else
+      flash[:alert] = "No se ha podido crear el post"
       render :new
     end
   end
@@ -34,8 +36,10 @@ class PostsController < ApplicationController
   # Update
   def update
     if @post.update(post_params)
+      flash[:notice] = "Post actualizado correctamente"
       redirect_to post_path(@post)
     else
+      flash[:alert] = "El post no se ha podido actualizar"
       render :edit
     end
   end
@@ -43,9 +47,10 @@ class PostsController < ApplicationController
   # Destroy
   def destroy
     if @post.destroy
+      flash[:notice] = "#{@post.title} eliminado correctamente"
       redirect_to posts_path
     else
-      p "Sabes que compa, no se pudo borrar. F"
+      flash[:alert] = "Sabes que compa, no se pudo borrar. F"
     end
   end
 
